@@ -1,0 +1,8 @@
+hash: bc9a6c6a8a5ba0eae1b2f6fc6da0ba3114bd6bc4ea29e93497dfd0a1615a303e
+updated: 2017-10-16T19:49:15.219035426+03:00
+imports:
+- name: github.com/iveronanomi/telegram-bot-api
+  version: 0a57807db79efce7f6719fbb2c0e0f83fda79aec
+- name: github.com/technoweenie/multipartstreamer
+  version: a90a01d73ae432e2611d178c18367fbaa13e0154
+testImports: []

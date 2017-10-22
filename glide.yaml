@@ -1,0 +1,4 @@
+package: github.com/ereminIvan/inbogo
+import:
+- package: github.com/iveronanomi/telegram-bot-api
+  version: ^4.6.0

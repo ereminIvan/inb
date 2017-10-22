@@ -1,29 +1,31 @@
 package main
 
 import (
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
 
-	"github.com/ereminIvan/inbogo/app"
+	"github.com/iveronanomi/inbogo/app"
 )
 
 func main() {
-	signals := make(chan os.Signal, 1)
-	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
+	log.SetFlags(log.Lshortfile | log.LstdFlags)
 
+	signals := make(chan os.Signal, 1)
 	shutdown := make(chan struct{})
 
-	a := app.New()
+	defer close(signals)
+	defer close(shutdown)
+
+	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
+
+	a := app.New(shutdown)
 
 	go func(){
 		<- signals
-		a.Stop()
 		shutdown <- struct{}{}
 	}()
 
-	a.Run(shutdown)
-
-	close(signals)
-	close(shutdown)
+	a.Run()
 }
